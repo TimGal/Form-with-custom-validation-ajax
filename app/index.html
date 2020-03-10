@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Test sign up form</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="libs/bootstrap-reboot/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="libs/bootstrap-reboot/bootstrap-reboot.min.css.map">
+</head>
+
+<body>
+	<div class="form-container">
+		<div class="card">
+			<div class="bitmap">
+				<h1 class="page-header">Sign up</h1>
+			</div>
+			<div class="form-wrapper">
+				<h2 class="form-header">New user?</h2>
+				<h4 class="form-description">Use the form below to create your account.</h4>
+
+				<form class="form-signup" action="#" method="post">
+					<div class="input-wrapper">
+						<label for="first_name">First name</label>
+						<input id="first_name" type="text" name="first_name" placeholder="Your first name" value="">
+					</div>
+
+					<div class="input-wrapper">
+						<label for="last_name">Last name</label>
+						<input id="last_name" type="text" name="last_name" placeholder="Your last name" value="">
+					</div>
+
+					<div class="input-wrapper">
+						<label for="nationality">Nationality</label>
+						<select id="nationality" name="nationality" value="">
+							<option value="" disabled selected>Your nationality</option>
+							<option value="US">American</option>
+							<option value="FR">Francian</option>
+							<option value="IT">Italian</option>
+							<option value="GR">German</option>
+						</select>
+					</div>
+
+					<div class="input-wrapper">
+						<label for="email">E-mail</label>
+						<input id="email" type="email" name="email" placeholder="Your email name" value="">
+					</div>
+
+					<div class="input-wrapper date-of-birth">
+						<label for="date_of_birth">Date of Birth</label>
+						<select id="date_of_birth" name="date_of_birth" value="">
+							<option value="" disabled selected>Day</option>
+							<option value="US">1</option>
+							<option value="FR">2</option>
+							<option value="IT">3</option>
+							<option value="GR">4</option>
+						</select>
+						<select id="month_of_birth" name="month_of_birth" value="">
+							<option value="" disabled selected>Month</option>
+							<option value="US">Jan</option>
+							<option value="FR">Feb</option>
+							<option value="IT">Mart</option>
+							<option value="GR">Apr</option>
+						</select>
+						<select id="year_of_birth" name="year_of_birth" value="">
+							<option value="" disabled selected>Year</option>
+							<option value="1997">1997</option>
+							<option value="1998">1998</option>
+							<option value="1999">1999</option>
+							<option value="2000">2000</option>
+						</select>
+					</div>
+
+					<div class="input-wrapper gender">
+						<label for="gender">Gender</label>
+						<div class="gender-item-wrapper">
+							<label><input class="gender-input" type="radio" name="gender" value="male">
+								<div class="gender-radio"></div>Male
+							</label>
+						</div>
+						<div class="gender-item-wrapper">
+							<label><input class="gender-input" type="radio" name="gender" value="female">
+								<div class="gender-radio"></div>Female
+							</label>
+						</div>
+					</div>
+
+					<div class="input-wrapper">
+						<label for="password">Password</label>
+						<input id="password" type="password" name="password" value="">
+					</div>
+
+					<div class="input-wrapper">
+						<label for="confirm_password">Confirm password</label>
+						<input id="confirm_password" type="password" name="confirm_password" value="">
+					</div>
+
+					<div class="login-link">
+						Have an account? <a href="#">Login</a>
+					</div>
+					<div class="btn-submit-wrapper">
+						<button type="submit" class="btn-submit">Complete Signup</button>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+	<script src="./js/main.js" charset="utf-8"></script>
+</body>
+
+</html>
