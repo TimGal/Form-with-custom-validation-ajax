@@ -31,7 +31,7 @@
     line-height: 1;
     letter-spacing: 0.5px;
     color: #FFFFFF;
-    transform: rotate(-90deg) translateX(-30%);;
+    transform: rotate(-90deg) translateX(-30%);
     transform-origin: left top;
     bottom: 22px;
     left: 10%;
@@ -107,7 +107,11 @@
     box-shadow: none;
     box-sizing: content-box;
     height: 28px;
-    border-bottom: 1px solid #ff4b4b;
+  }
+
+  input:focus {
+    border-bottom: 1px solid #5A61ED;
+    transition: 0.5s;
   }
 
   select {
@@ -118,9 +122,25 @@
     background: url("../img/svg/dropdown-arrow.svg");
     background-position: right center;
     background-repeat: no-repeat;
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
 
     option:nth-child(1) {
       color: #7C7C7C;
+    }
+  }
+
+  .gender-item-wrapper {
+    label.radio-label {
+      font-family: 'Work Sans', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: #111111;
     }
   }
 
@@ -148,13 +168,13 @@
     &::before {
       content: '';
       background: #5A61ED;
-      width: 6px;
-      height: 6px;
+      width: 50%;
+      height: 50%;
       opacity: 0;
       transition: 0.3s;
       position: absolute;
-      top: 2px;
-      left: 2px;
+      top: 25%;
+      left: 25%;
       border-radius: 300px;
     }
   }
@@ -186,9 +206,17 @@
   flex-wrap: wrap;
 }
 
+.radio-label {
+  font-family: 'Work Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
 .login-link {
   margin-top: 104px;
-  font-family: Work Sans;
+  font-family: 'Work Sans', sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 13px;

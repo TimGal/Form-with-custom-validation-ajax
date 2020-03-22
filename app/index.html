@@ -8,7 +8,6 @@
 	<title>Test sign up form</title>
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="libs/bootstrap-reboot/bootstrap-reboot.min.css">
-	<link rel="stylesheet" href="libs/bootstrap-reboot/bootstrap-reboot.min.css.map">
 </head>
 
 <body>
@@ -21,7 +20,7 @@
 				<h2 class="form-header">New user?</h2>
 				<h4 class="form-description">Use the form below to create your account.</h4>
 
-				<form class="form-signup" action="#" method="post">
+				<form class="form-signup" method="post">
 					<div class="input-wrapper">
 						<label for="first_name">First name</label>
 						<input id="first_name" type="text" name="first_name" placeholder="Your first name" value="">
@@ -76,12 +75,12 @@
 					<div class="input-wrapper gender">
 						<label for="gender">Gender</label>
 						<div class="gender-item-wrapper">
-							<label><input class="gender-input" type="radio" name="gender" value="male">
+							<label class="radio-label"><input class="gender-input" type="radio" name="gender" value="male">
 								<div class="gender-radio"></div>Male
 							</label>
 						</div>
 						<div class="gender-item-wrapper">
-							<label><input class="gender-input" type="radio" name="gender" value="female">
+							<label class="radio-label"><input class="gender-input" type="radio" name="gender" value="female">
 								<div class="gender-radio"></div>Female
 							</label>
 						</div>
@@ -105,11 +104,12 @@
 					</div>
 				</form>
 
-
 			</div>
 		</div>
 	</div>
-	<script src="./js/main.js" charset="utf-8"></script>
+
+
+	<script src="./js/main.js"></script>
 </body>
 
 </html>
