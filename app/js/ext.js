@@ -10,23 +10,8 @@ function validateForm(event) {
 
   console.log('email:' + ' ' + email);
   console.log('pass:' + ' ' + password);
-  function validateEmail() { // делаем проверку e-mail
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // регулярное выражение для e-mail
-    if (re.test()) {
-      return true;
-    } else if (email.length != 0) {
-      alert('invalid email');
-      return false;
-    } else {
-      alert('Please input email');
-      return false;
-    }
 
 
-
-  };
-
-  validateEmail();
 
   function checkPassword() {
      let s_letters = "qwertyuiopasdfghjklzxcvbnm"; // Буквы в нижнем регистре

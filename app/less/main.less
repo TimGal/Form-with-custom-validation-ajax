@@ -43,6 +43,9 @@
   width: 80%;
   border: 1px solid #d2d2d2;
   padding: 38px 20px;
+  overflow: hidden;
+  position: relative;
+
 
   h2.form-header {
     font-family: 'Work Sans', sans-serif;
@@ -107,11 +110,29 @@
     box-shadow: none;
     box-sizing: content-box;
     height: 28px;
+    background-color: transparent;
   }
 
   input:focus {
     border-bottom: 1px solid #5A61ED;
     transition: 0.5s;
+  }
+
+  select.changed:invalid {
+    border-bottom: 1px solid #ff0e0e;
+  }
+
+  input.changed:invalid {
+    border-bottom: 1px solid #ff0e0e;
+  }
+
+  input.changed:valid {
+    background: url("../img/svg/valid.svg");
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+  background-position: right center;
+  background-repeat: no-repeat;
   }
 
   select {
@@ -168,14 +189,15 @@
     &::before {
       content: '';
       background: #5A61ED;
-      width: 50%;
-      height: 50%;
+      width: 6px;
+      height: 6px;
       opacity: 0;
       transition: 0.3s;
       position: absolute;
-      top: 25%;
-      left: 25%;
+      top: 50%;
+      left: 50%;
       border-radius: 300px;
+      transform: translateX(-50%) translateY(-50%);
     }
   }
 
@@ -214,6 +236,16 @@
   line-height: 16px;
 }
 
+.person-svg-wrapper {
+//  background: url("../img/svg/person.svg");
+  position: absolute;
+  width: 411px;
+  height: 411px;
+  bottom: -56px;
+  right: -104px;
+  z-index: -10;
+}
+
 .login-link {
   margin-top: 104px;
   font-family: 'Work Sans', sans-serif;
@@ -241,6 +273,16 @@
     color: #FFFFFF;
 
   }
+}
+
+.delay-6s {
+  animation-delay: 6s;
+}
+.delay-7s {
+  animation-delay: 7s;
+}
+.delay-8s {
+  animation-delay: 8s;
 }
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans|Work+Sans:300,400,500&display=swap&subset=cyrillic');

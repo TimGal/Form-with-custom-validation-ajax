@@ -4,22 +4,22 @@ let email = document.querySelector('#email').value; // Получаем email и
 let password = document.querySelector('#password').value; // Получаем пароль из формы
 let confirm_password = document.querySelector('#confirm_password').value;// Получаем подтверждение пароля из формы
 
+function getEmail() {
+  return document.querySelector('#email').value;
+}
+
 function getPasswordValue() {
   return document.querySelector('#password').value; // Получаем пароль из формы
-}
+};
 
 function getConfirmPasswordValue() {
   return document.querySelector('#confirm_password').value; // Получаем пароль из формы
-}
+};
 
 function checkEmailValid() {
    var reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-   var address = email;
-   if(reg.test(address) == false) {
-      return false;
-   } else {
-     return true;
-   }
+   var address = getEmail();
+   return reg.test(address);
 };
 
 function checkPasswordHasSmLetters () {
@@ -28,9 +28,9 @@ function checkPasswordHasSmLetters () {
   let is_s = false; // Есть ли в пароле буквы в нижнем регистре
   for (let i = 0; i < password.length; i++) {
     if (s_letters.indexOf(password[i]) != -1) is_s = true;
-  }
+  };
   return is_s;
-}
+};
 
 function checkPasswordHasBigLetters () {
   let password = getPasswordValue();
@@ -38,9 +38,9 @@ function checkPasswordHasBigLetters () {
   let is_b = false; // Есть ли в пароле буквы в верхнем регистре
   for (let i = 0; i < password.length; i++) {
     if (b_letters.indexOf(password[i]) != -1) is_b = true;
-  }
+  };
   return is_b;
-}
+};
 
 function checkPasswordHasDigits () {
   let password = getPasswordValue();
@@ -48,88 +48,168 @@ function checkPasswordHasDigits () {
   let is_d = false; // Есть ли в пароле цифры
   for (let i = 0; i < password.length; i++) {
     if ( digits.indexOf(password[i]) != -1) is_d = true;
-  }
+  };
   return is_d;
-}
+};
 
 function checkPasswordLongEnough () {
   let password = getPasswordValue();
-  if (password.length > 6) {
+  if (password.length > 7) {
     return true;
   } else {
     return false;
-  }
-}
+  };
+};
 
 function checkPasswordConfirm() {
-  let password = getPasswordValue();
-  let confirm_password = getConfirmPasswordValue();
-  if (password == confirm_password) {
+  let pass = getPasswordValue();
+  let confirm_pass = getConfirmPasswordValue();
+  if (pass == confirm_pass) {
     return true;
   } else {
     return false;
-  }
-}
+  };
+};
 
-function CustomValidation() { }
-
-CustomValidation.prototype = {
-  // Установим пустой массив сообщений об ошибках
-  invalidities: [],
-
-  // Метод, проверяющий валидность
-  checkValidity: function(input) {
-
-    var validity = input.validity;
-
-    if (validity.patternMismatch) {
-      this.addInvalidity('This is the wrong pattern for this field');
-    }
-
-    if (validity.rangeOverflow) {
-      var max = getAttributeValue(input, 'max');
-      this.addInvalidity('The maximum value should be ' + max);
-    }
-
-    if (validity.rangeUnderflow) {
-      var min = getAttributeValue(input, 'min');
-      this.addInvalidity('The minimum value should be ' + min);
-    }
-
-    if (validity.stepMismatch) {
-      var step = getAttributeValue(input, 'step');
-      this.addInvalidity('This number needs to be a multiple of ' + step);
-    }
-
-    // И остальные проверки валидности...
-  },
-
+function CheckedInput(input) {
+  this.invalidities = [];
+  this.inputTag = input;
+  this.valid = false;
   // Добавляем сообщение об ошибке в массив ошибок
-  addInvalidity: function(message) {
-    this.invalidities.push(message);
+  this.addInvalidity = function(message) {
+
+    if (!this.invalidities.includes(message)) {
+      // console.log('Добавлено сообщение ' + message + ' В ' + input);
+      this.invalidities.push(message);
+    }
   },
 
   // Получаем общий текст сообщений об ошибках
-  getInvalidities: function() {
-    return this.invalidities.join('. \n');
+  this.getInvalidities = function() {
+    // console.log('Получены сообщения из ' + input);
+    return this.invalidities.join('\n');
   }
 };
 
+let emailInput = new CheckedInput(document.querySelector('#email'));
+let passwordInput = new CheckedInput(document.querySelector('#password'));
+let confirmPasswordInput = new CheckedInput(document.querySelector('#confirm_password'));
+
+function checkEmailValidity(emailvalid) {
+  // console.log('Проверяем подходит ли майл');
+  if (!checkEmailValid()) {
+    // console.log(' Не подходит, добавим ошибку');
+    emailvalid.addInvalidity('Enter the correct email address.');
+  } else {
+    emailvalid.valid = true;
+    emailvalid.invalidities = [];
+    // console.log('Подходит');
+  };
+};
+
+function checkPasswordValidity(passvalid) {
+  // console.log('Проверяем подходит ли пароль');
+  if (!checkPasswordHasSmLetters()) {
+    // console.log(' Не подходит, добавим ошибку');
+    passvalid.addInvalidity('Password must contain at least one lowercase letter.');
+  } else {
+    // console.log('Подходит');
+    delete passvalid.invalidities[0];
+  };
+
+  if (!checkPasswordHasBigLetters()) {
+    // console.log(' Не подходит, добавим ошибку');
+    passvalid.addInvalidity('Password must contain at least one uppercase letter.');
+  } else {
+    // console.log('Подходит');
+    delete passvalid.invalidities[1];
+  };
+
+  if (!checkPasswordHasDigits()) {
+    // console.log(' Не подходит, добавим ошибку');
+    passvalid.addInvalidity('Password must contain at least one digit.');
+  } else {
+    // console.log('Подходит');
+    delete passvalid.invalidities[2];
+  };
+
+  if (!checkPasswordLongEnough()) {
+    // console.log(' Не подходит, добавим ошибку');
+    passvalid.addInvalidity('Password must contain 8 or more symbols.');
+  } else {
+    // console.log('Подходит');
+    delete passvalid.invalidities[3];
+  };
+
+  if (checkPasswordHasSmLetters() && checkPasswordHasBigLetters() && checkPasswordHasDigits() && checkPasswordLongEnough() ) {
+    // console.log('Подходит');
+    passvalid.valid = true;
+    passvalid.invalidities = [];
+  }
+};
+
+function checkConfirmPasswordValidity(confpassvalid) {
+  // console.log('Проверяем подходит ли подтверждение пароля');
+  if (!checkPasswordConfirm()) {
+    // console.log(' Не подходит, добавим ошибку');
+    confpassvalid.addInvalidity("Passwords don't match.");
+  } else {
+    // console.log('Подходит');
+    confpassvalid.valid = true;
+    confpassvalid.invalidities = [];
+  };
+};
+
+function releaseCustomValidity() {
+    checkEmailValidity(emailInput);
+    checkPasswordValidity(passwordInput);
+    checkConfirmPasswordValidity(confirmPasswordInput);
+
+    let customEmailValidityMessage = emailInput.getInvalidities();
+    let customPasswordValidityMessage = passwordInput.getInvalidities();
+    let customConfirmPasswordValidityMessage = confirmPasswordInput.getInvalidities();
+    document.getElementById('email').setCustomValidity(customEmailValidityMessage);
+    document.getElementById('password').setCustomValidity(customPasswordValidityMessage);
+    document.getElementById('confirm_password').setCustomValidity(customConfirmPasswordValidityMessage);
+
+};
+
 // Добавляем обработчик клика на кнопку отправки формы
-submit.addEventListener('click', function(e) {
-  // Пройдёмся по всем полям
-  for (var i = 0; i < inputs.length; i++) {
+btn.addEventListener("click", function() {
+  if (emailInput.valid == false || passwordInput.valid == false || confirmPasswordInput.valid == false ) {
+    releaseCustomValidity();
+  } else {
+    releaseCustomValidity();
+    $.ajax({
+        url:      '/action.php', //url страницы
+        method:   'post', //метод отправки
+        dataType: 'html',
+        data: $("#ajax_form").serialize(),  // Сеарилизуем объект
+        success: function(response) { //Данные отправлены успешно
+        	result = $.parseJSON(response);
+        	$('#result_form').html('first_name: '+result.first_name+'<br>last_name: '+result.last_name+'<br>nationality: '+result.nationality+'<br>email: '+result.phonenumber+'<br>date_of_birth: '+result.date_of_birth+'<br>month_of_birth: '+result.month_of_birth+'<br>year_of_birth: '+result.year_of_birth+'<br>gender: '+result.gender+'<br>password: '+result.password);
+          $("#ajax_form").hide();
+          $(".form-header").text('Thank You!');
+          $(".form-description").text('you registered!');
 
-    var input = inputs[i];
+      	},
+      	error: function(response) { // Данные не отправлены
+              let btnComplete =  document.querySelector('#btn-complete');
+              btnComplete.classList.add('animated', 'shake');
+              $('#result_form').html('Ошибка. Данные не отправлены.');
+              btnComplete.addEventListener('animationend', function() {
+                btnComplete.classList.remove('animated', 'shake');
+              });
+      	}
+ 	});
+    return false;
+  };
 
-    // Проверим валидность поля, используя встроенную в JavaScript функцию checkValidity()
-    if (input.checkValidity() == false) {
+});
 
-      var inputCustomValidation = new CustomValidation(); // Создадим объект CustomValidation
-      inputCustomValidation.checkValidity(input); // Выявим ошибки
-      var customValidityMessage = inputCustomValidation.getInvalidities(); // Получим все сообщения об ошибках
-      input.setCustomValidity(customValidityMessage); // Установим специальное сообщение об ошибке
-
-    } // закончился if
-  } // закончился цикл
+//Отрисовка SVG графики
+new Vivus('draw-svg', {
+   duration: 100,
+   type: "sync",
+   file: "../img/svg/person.svg"
 });
