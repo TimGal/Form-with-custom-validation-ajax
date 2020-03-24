@@ -1,11 +1,18 @@
 // font-family: 'Work Sans', sans-serif;
 // font-family: 'PT Sans', sans-serif;
+@mobile: 810px;
 
 .form-container {
   width: 800px;
   height: 600px;
   margin: 0 auto;
   padding: 60px 67.5px;
+
+  @media (max-width: @mobile) {
+    height: min-content;
+    width: 100%;
+    padding: 10px 10px;
+  }
 }
 
 .card {
@@ -14,6 +21,11 @@
   height: 100%;
   display: flex;
   flex-direction: row;
+
+  @media (max-width: @mobile) {
+    height: min-content;
+    flex-direction: column;
+  }
 }
 
 .bitmap {
@@ -21,6 +33,14 @@
   height: 100%;
   background-color: #5A61ED;
   color: #fff;
+
+  @media (max-width: @mobile) {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   h1.page-header {
     position: absolute;
@@ -36,6 +56,14 @@
     bottom: 22px;
     left: 10%;
     margin-bottom: 0;
+
+    @media (max-width: @mobile) {
+      transform: rotate(0deg) translateX(0%);
+      bottom: 0;
+      font-size: 40px;
+      position: relative;
+      left: 0;
+    }
   }
 }
 
@@ -45,6 +73,11 @@
   padding: 38px 20px;
   overflow: hidden;
   position: relative;
+
+  @media (max-width: @mobile) {
+    width: 100%;
+    padding: 19px 10px;
+  }
 
 
   h2.form-header {
@@ -56,6 +89,20 @@
     letter-spacing: -0.46px;
     color: #111111;
     margin-bottom: 0;
+    text-overflow: ellipsis;
+  }
+
+  h2.form-header.form-header-sended {
+    margin-top: 179px !important;
+    margin-left: 44px !important;
+  }
+
+  h4.form-description.form-description-sended {
+    margin-top: 11px !important;
+    margin-left: 44px !important;
+    @media (max-width: @mobile) {
+      margin-bottom: 50%;
+    }
   }
 
   h4.form-description {
@@ -66,6 +113,7 @@
     line-height: 16px;
     color: #111111;
     margin-bottom: 0;
+    text-overflow: ellipsis;
   }
 }
 
@@ -83,6 +131,9 @@
   flex-direction: column;
   margin-top: 20px;
 
+@media (max-width: @mobile) {
+  width: 100%;
+}
   label {
     width: 100%;
     font-family: 'Work Sans', sans-serif;
@@ -247,7 +298,7 @@
 }
 
 .login-link {
-  margin-top: 104px;
+  position: absolute;
   font-family: 'Work Sans', sans-serif;
   font-style: normal;
   font-weight: 300;
@@ -255,11 +306,28 @@
   line-height: 15px;
   color: #000000;
   display: inline-block;
+  bottom: 43px;
+  left: 21px;
+
+  @media (max-width: @mobile) {
+    bottom: 28px;
+    left: 10px;
+  }
 }
 
 .btn-submit-wrapper {
-  float: right;
-  margin-top: 98px;
+  margin-top: 88px;
+  width: 100%;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+
+  @media (max-width: @mobile) {
+    margin-top: 8px;
+  }
+  @media (max-width: 342px) {
+    align-items: center;
+  }
   .btn-submit {
     width: 154px;
     height: 32px;
@@ -271,7 +339,14 @@
     font-size: 14px;
     line-height: 18px;
     color: #FFFFFF;
-
+    align-self: end;
+    @media (max-width: @mobile) {
+      float: right;
+      margin-left: 55%;
+    }
+    @media (max-width: 342px) {
+      margin-bottom: 40px;
+    }
   }
 }
 
@@ -284,5 +359,6 @@
 .delay-8s {
   animation-delay: 8s;
 }
+
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans|Work+Sans:300,400,500&display=swap&subset=cyrillic');

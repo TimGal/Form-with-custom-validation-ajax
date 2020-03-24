@@ -174,15 +174,15 @@ function releaseCustomValidity() {
 
 };
 
-// Добавляем обработчик клика на кнопку отправки формы
-btn.addEventListener("click", function() {
+
+$('#btn-complete').click(function() {
   if (emailInput.valid == false || passwordInput.valid == false || confirmPasswordInput.valid == false ) {
     releaseCustomValidity();
   } else {
-    releaseCustomValidity();
+    checkConfirmPasswordValidity(confirmPasswordInput);
     $.ajax({
         url:      '/action.php', //url страницы
-        method:   'post', //метод отправки
+        type:     "POST", //метод отправки
         dataType: 'html',
         data: $("#ajax_form").serialize(),  // Сеарилизуем объект
         success: function(response) { //Данные отправлены успешно
@@ -190,7 +190,9 @@ btn.addEventListener("click", function() {
         	$('#result_form').html('first_name: '+result.first_name+'<br>last_name: '+result.last_name+'<br>nationality: '+result.nationality+'<br>email: '+result.phonenumber+'<br>date_of_birth: '+result.date_of_birth+'<br>month_of_birth: '+result.month_of_birth+'<br>year_of_birth: '+result.year_of_birth+'<br>gender: '+result.gender+'<br>password: '+result.password);
           $("#ajax_form").hide();
           $(".form-header").text('Thank You!');
+          $(".form-header").addClass("form-header-sended");
           $(".form-description").text('you registered!');
+          $(".form-description").addClass("form-description-sended");
 
       	},
       	error: function(response) { // Данные не отправлены
@@ -202,10 +204,41 @@ btn.addEventListener("click", function() {
               });
       	}
  	});
-    return false;
   };
-
 });
+
+// Добавляем обработчик клика на кнопку отправки формы
+// btn.addEventListener("click", function() {
+//   if (emailInput.valid == false || passwordInput.valid == false || confirmPasswordInput.valid == false ) {
+//     releaseCustomValidity();
+//   } else {
+//     $.ajax({
+//         url:      '/action.php', //url страницы
+//         type:     "POST", //метод отправки
+//         dataType: 'html',
+//         data: $("#ajax_form").serialize(),  // Сеарилизуем объект
+//         success: function(response) { //Данные отправлены успешно
+//         	result = $.parseJSON(response);
+//         	$('#result_form').html('first_name: '+result.first_name+'<br>last_name: '+result.last_name+'<br>nationality: '+result.nationality+'<br>email: '+result.phonenumber+'<br>date_of_birth: '+result.date_of_birth+'<br>month_of_birth: '+result.month_of_birth+'<br>year_of_birth: '+result.year_of_birth+'<br>gender: '+result.gender+'<br>password: '+result.password);
+//           $("#ajax_form").hide();
+//           $(".form-header").text('Thank You!');
+//           $(".form-header").addClass("form-header-sended");
+//           $(".form-description").text('you registered!');
+//           $(".form-description").addClass("form-description-sended");
+//
+//       	},
+//       	error: function(response) { // Данные не отправлены
+//               let btnComplete =  document.querySelector('#btn-complete');
+//               btnComplete.classList.add('animated', 'shake');
+//               $('#result_form').html('Ошибка. Данные не отправлены.');
+//               btnComplete.addEventListener('animationend', function() {
+//                 btnComplete.classList.remove('animated', 'shake');
+//               });
+//       	}
+//  	});
+//   };
+//
+// });
 
 //Отрисовка SVG графики
 new Vivus('draw-svg', {

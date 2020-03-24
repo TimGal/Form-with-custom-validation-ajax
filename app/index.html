@@ -21,7 +21,7 @@
 				<h2 class="form-header">New user?</h2>
 				<h4 class="form-description">Use the form below to create your account.</h4>
 
-				<form id="ajax_form" class="form-signup" method="post" action="">
+				<form id="ajax_form" class="form-signup" method="post">
 					<!-- First name -->
 					<div class="input-wrapper animated fadeInUp delay-1s">
 						<label for="first_name">First name</label>
@@ -106,13 +106,15 @@
 						<input id="confirm_password" type="password" name="confirm_password" value="" onchange="this.classList.add('changed')" required>
 					</div>
 
-					<div class="login-link">
-						Have an account? <a href="#">Login</a>
-					</div>
+
 					<div class="btn-submit-wrapper">
-						<button id="btn-complete" type="submit" class="btn-submit">Complete Signup</button>
+						<button id="btn-complete" class="btn-submit">Complete Signup</button>
 					</div>
 				</form>
+
+				<div class="login-link">
+					Have an account? <a href="#">Login</a>
+				</div>
 
 				<div id="draw-svg" class="person-svg-wrapper">
 
